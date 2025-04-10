@@ -1,10 +1,10 @@
 # DE1_Projekt_Digitální hodiny s alarmem a stopkami
 ________________________________________________
 # Členové týmu
-Member 1: Ladislav Jonáš
-Member 2: Martin Koleňák
-Member 3: Matyas Heneberk
-Member 4: Vojtěch Brhel
+Člen 1: Ladislav Jonáš
+Člen 2: Martin Koleňák
+Člen 3: Matyas Heneberk
+Člen 4: Vojtěch Brhel
 ________________________________________________
 
 # Popis programu
