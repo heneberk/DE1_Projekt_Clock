@@ -1,0 +1,96 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity top_level is
+
+
+    -- BTN + switch
+
+
+
+
+
+end top_level;
+
+architecture Behavioral of top_level is
+-----------------
+component stopwatch is
+    Port (
+        clk          : in  STD_LOGIC;                        -- hlavní hodiny (100 MHz)
+        rst          : in  STD_LOGIC;                        -- globální reset (nepovinné)
+        sw2          : in  STD_LOGIC;                        -- switch 2 pro aktivaci režimu
+        btn_center   : in  STD_LOGIC;                        -- tlačítko pro ovládání režimu
+        seg_display  : out STD_LOGIC_VECTOR(23 downto 0)     -- výstup pro 6 číslic
+    );
+end component;
+-----------------
+component clk_1hz is
+    Port ( clk_in : in STD_LOGIC;
+           clk_out : out STD_LOGIC;
+           rst : in std_logic);
+end component;
+-----------------
+component clock is
+    Port (
+           clk : in STD_LOGIC;
+           clk_1hz : in STD_LOGIC;
+           set_sw : in std_logic;
+           btn_right : in std_logic;
+           btn_left : in std_logic;
+           btn_up : in std_logic;
+           btn_down : in std_logic;
+           seconds : out std_logic_vector (5 downto 0);
+           minutes : out std_logic_vector (5 downto 0);
+           hours : out std_logic_vector (4 downto 0)
+     );
+end component;
+-----------------
+component alarm_comparator is
+    Port (
+        current_hh  : in  STD_LOGIC_VECTOR(5 downto 0);
+        current_mm  : in  STD_LOGIC_VECTOR(5 downto 0);
+        alarm_hh    : in  STD_LOGIC_VECTOR(5 downto 0);
+        alarm_mm    : in  STD_LOGIC_VECTOR(5 downto 0);
+        alarm_on    : in  STD_LOGIC;
+        alarm_match : out STD_LOGIC
+    );
+end component;
+-----------------
+component alarm_output is
+    Port (
+        clk         : in  STD_LOGIC;
+        alarm_match : in  STD_LOGIC;
+        buzzer_out  : out STD_LOGIC;
+        led_alarm   : out STD_LOGIC
+    );
+end component;
+-----------------
+component alarm_register is
+    Port (
+        clk         : in  STD_LOGIC;
+        rst         : in  STD_LOGIC;
+        load_alarm  : in  STD_LOGIC; -- impuls pro na?tení hodnoty
+        alarm_hh    : in  STD_LOGIC_VECTOR(5 downto 0);
+        alarm_mm    : in  STD_LOGIC_VECTOR(5 downto 0);
+        set_hh      : out STD_LOGIC_VECTOR(5 downto 0);
+        set_mm      : out STD_LOGIC_VECTOR(5 downto 0)
+    );
+end component;
+-----------------
+
+begin
+
+
+-- prirazeni signalu
+
+end Behavioral;
