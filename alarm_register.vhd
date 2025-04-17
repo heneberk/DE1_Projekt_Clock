@@ -6,7 +6,7 @@ entity alarm_register is
     Port (
         clk         : in  STD_LOGIC;
         rst         : in  STD_LOGIC;
-        load_alarm  : in  STD_LOGIC; -- impuls pro na?tení hodnoty
+        load_alarm  : in  STD_LOGIC; -- impuls pro na?tenÃ­ hodnoty
         alarm_hh    : in  STD_LOGIC_VECTOR(5 downto 0);
         alarm_mm    : in  STD_LOGIC_VECTOR(5 downto 0);
         set_hh      : out STD_LOGIC_VECTOR(5 downto 0);
@@ -15,7 +15,8 @@ entity alarm_register is
 end alarm_register;
 
 architecture Behavioral of alarm_register is
-    signal reg_hh, reg_mm : STD_LOGIC_VECTOR(5 downto 0);
+    signal reg_hh : STD_LOGIC_VECTOR(4 downto 0);
+    signal reg_mm : STD_LOGIC_VECTOR(5 downto 0);
 begin
     process(clk)
     begin
