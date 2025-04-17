@@ -1,4 +1,3 @@
-
 ----------------------------------------------------------------------------------
 -- Company: 
 -- Engineer: 
@@ -50,7 +49,7 @@ end clock;
 architecture Behavioral of clock is
     type state_type is (SET, DISP);
     signal state : state_type;
-    signal digit : integer;
+    signal digit : integer range 0 to 5;
     signal seconds_n : integer;
     signal minutes_n : integer;
     signal hours_n : integer;
@@ -66,7 +65,26 @@ begin
                 when SET =>
                     if (set_sw = '0') then
                         state <= DISP;
-           
+                    elsif (btn_right = '1') then
+                        digit <= digit + 1;
+                    elsif (btn_left = '1') then
+                        digit <= digit - 1;
+                    elsif (btn_up = '1') then
+                        case digit is
+                            when 0 =>
+                                seconds_n <= seconds_n + 1;
+                            when 1 =>
+                                seconds_n <= seconds_n + 10;
+                            when 2 =>
+                                minutes_n <= minutes_n + 1;
+                            when 3 =>
+                                minutes_n <= minutes_n + 10;
+                            when 4 => 
+                                hours_n <= hours_n + 1;
+                            when 5 =>
+                                hours_n <= hours_n + 10;
+                        end case;
+                        if (seconds_n)                  
                     end if;
                 when others =>
                     state <= DISP;
