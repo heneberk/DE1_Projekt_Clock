@@ -42,7 +42,8 @@ entity clock is
            btn_down : in std_logic;
            seconds : out std_logic_vector (5 downto 0);
            minutes : out std_logic_vector (5 downto 0);
-           hours : out std_logic_vector (4 downto 0);
+           hours : out std_logic_vector (4 downto 0)
+     );
 end clock;
     
 architecture Behavioral of clock is
@@ -68,12 +69,8 @@ begin
                     end if;
                 when others =>
                     state <= DISP;
-            end case;             
-                    
-            
+            end case;
         end if;
-        
-        
     end process;
     
     process (clk_1hz)
