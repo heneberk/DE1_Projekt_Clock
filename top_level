@@ -14,8 +14,8 @@ entity top_level is
 port (
 
         
-        CLK100MHZ : in    std_logic; 
-        LED  : out   std_logic_vector(1 downto 0);
+        CLK  : in    std_logic; 
+        LED  : out   std_logic_vector(1 downto 0);             -- vystup alarm
 
         BTNC : in std_logic;
         BTNU : in std_logic;
@@ -51,21 +51,21 @@ end component;
 component clk_1hz is
     Port ( clk_in : in STD_LOGIC;
            clk_out : out STD_LOGIC;
-           rst : in std_logic);
+           rst : in STD_LOGIC);
 end component;
 -----------------
 component clock is
     Port (
            clk : in STD_LOGIC;
            clk_1hz : in STD_LOGIC;
-           set_sw : in std_logic;
-           btn_right : in std_logic;
-           btn_left : in std_logic;
-           btn_up : in std_logic;
-           btn_down : in std_logic;
-           seconds : out std_logic_vector (5 downto 0);
-           minutes : out std_logic_vector (5 downto 0);
-           hours : out std_logic_vector (4 downto 0)
+           set_sw : in STD_LOGIC;
+           btn_right : in STD_LOGIC;
+           btn_left : in STD_LOGIC;
+           btn_up : in STD_LOGIC;
+           btn_down : in STD_LOGIC;
+           seconds : out STD_LOGIC_VECTOR (5 downto 0);
+           minutes : out STD_LOGIC_VECTOR (5 downto 0);
+           hours : out STD_LOGIC_VECTOR (4 downto 0)
      );
 end component;
 -----------------
@@ -105,6 +105,79 @@ end component;
 begin
 
 
--- prirazeni signalu
+
+    -- hodinový generátor (1Hz)
+    clk_divider_inst : clk_1hz
+        port map (
+            clk_in  => CLK,
+            clk_out => clk_1hz_sig,
+            rst     => BTNC
+        );
+
+    --  hodiny
+    clock_inst : clock
+        port map (
+            clk        => CLK,
+            clk_1hz    => clk_1hz_sig,
+            set_sw     => SW15,
+            btn_right  => BTNR,
+            btn_left   => BTNL,
+            btn_up     => BTNU,
+            btn_down   => BTND,
+            seconds    => seconds_sig,
+            minutes    => minutes_sig,
+            hours      => hours_sig
+        );
+
+    -- stopeky
+    stopwatch_inst : stopwatch
+        port map (
+            clk         => CLK,
+            rst         => BTNC,
+            sw2         => SW14,
+            btn_center  => BTNC,
+            seg_display => seg_display_sig
+        );
+
+    -- registr pro alarm
+    alarm_reg_inst : alarm_register
+        port map (
+            clk         => CLK,
+            rst         => BTNC,
+            load_alarm  => SW13,
+            alarm_hh    => hours_sig,
+            alarm_mm    => minutes_sig,
+            set_hh      => alarm_hh_sig,
+            set_mm      => alarm_mm_sig
+        );
+
+    -- porovnání alarmu
+    alarm_comp_inst : alarm_comparator
+        port map (
+            current_hh  => ("00" & hours_sig),  -- rozšíření 5bit na 6bit
+            current_mm  => minutes_sig,
+            alarm_hh    => alarm_hh_sig,
+            alarm_mm    => alarm_mm_sig,
+            alarm_on    => SW13,
+            alarm_match => alarm_match_sig
+        );
+
+    -- výstup alarmu
+    alarm_output_inst : alarm_output
+        port map (
+            clk         => CLK,
+            alarm_match => alarm_match_sig,
+            buzzer_out  => buzzer_out_sig,
+            led_alarm   => led_alarm_sig
+        );
+
+    -- Výstupy
+    LED(0) <= buzzer_out_sig;
+    LED(1) <= led_alarm_sig;
+
+    -- Výstup na displeje 
+    DISP1 <= seg_display_sig(0);  
+    DISP2 <= seg_display_sig(1);
+
 
 end Behavioral;
