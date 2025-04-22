@@ -3,9 +3,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -14,11 +11,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity top_level is
 
-
-    -- BTN + switch
-
 port (
+
         
+        CLK100MHZ : in    std_logic; 
+        LED  : out   std_logic_vector(1 downto 0);
+
         BTNC : in std_logic;
         BTNU : in std_logic;
         BTND : in std_logic;
