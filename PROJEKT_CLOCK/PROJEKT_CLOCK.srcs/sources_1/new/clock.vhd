@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -35,6 +35,7 @@ entity clock is
     Port (
            clk : in STD_LOGIC;
            clk_1hz : in STD_LOGIC;
+           rst : in STD_LOGIC;
            set_sw : in std_logic;
            btn_right : in std_logic;
            btn_left : in std_logic;
@@ -50,13 +51,22 @@ architecture Behavioral of clock is
     type state_type is (SET, DISP);
     signal state : state_type;
     signal digit : integer range -1 to 3;
+    
     signal seconds_n : integer range -1 to 60;
     signal minutes_n : integer range -1 to 60;
     signal hours_n : integer range -1 to 24;
 begin
-    process (clk)
+    process (clk, rst)
     begin
         if rising_edge(clk) then
+            if (rst = '1') then
+                state <= DISP;
+                
+                seconds_n <= 0;
+                minutes_n <= 0;
+                hours_n <= 0;
+                digit <= 0;
+            end if;
             case state is
                 when DISP =>
                     if (set_sw = '1') then
@@ -106,7 +116,13 @@ begin
                         hours_n <= 0;
                     elsif (hours_n < 0) then
                         hours_n <= 23;
-                    end if;                    
+                    end if;
+                    
+                    if (digit > 2) then
+                        digit <= 0;
+                    elsif (digit < 0) then
+                        digit <= 2;
+                    end if;   
                 when others =>
                     state <= DISP;
             end case;
@@ -130,4 +146,8 @@ begin
             end if;
         end if;
     end process;
+    
+    seconds <= std_logic_vector(to_unsigned(seconds_n, seconds'length));
+    minutes <= std_logic_vector(to_unsigned(minutes_n, minutes'length));
+    hours <= std_logic_vector(to_unsigned(hours_n, hours'length));
 end Behavioral;
