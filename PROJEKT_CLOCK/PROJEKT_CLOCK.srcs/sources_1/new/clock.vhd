@@ -45,14 +45,14 @@ entity clock is
            hours : out std_logic_vector (4 downto 0)
      );
 end clock;
-    
+
 architecture Behavioral of clock is
     type state_type is (SET, DISP);
     signal state : state_type;
-    signal digit : integer range 0 to 5;
-    signal seconds_n : integer;
-    signal minutes_n : integer;
-    signal hours_n : integer;
+    signal digit : integer range -1 to 3;
+    signal seconds_n : integer range -1 to 60;
+    signal minutes_n : integer range -1 to 60;
+    signal hours_n : integer range -1 to 24;
 begin
     process (clk)
     begin
@@ -61,7 +61,7 @@ begin
                 when DISP =>
                     if (set_sw = '1') then
                         state <= SET;
-                    end if;  
+                    end if;
                 when SET =>
                     if (set_sw = '0') then
                         state <= DISP;
@@ -74,18 +74,39 @@ begin
                             when 0 =>
                                 seconds_n <= seconds_n + 1;
                             when 1 =>
-                                seconds_n <= seconds_n + 10;
-                            when 2 =>
                                 minutes_n <= minutes_n + 1;
-                            when 3 =>
-                                minutes_n <= minutes_n + 10;
-                            when 4 => 
+                            when 2 =>
                                 hours_n <= hours_n + 1;
-                            when 5 =>
-                                hours_n <= hours_n + 10;
-                        end case;
-                        if (seconds_n)                  
+                        end case; 
+                    elsif (btn_down = '1') then
+                        case digit is
+                            when 0 =>
+                                seconds_n <= seconds_n - 1;
+                            when 1 =>
+                                minutes_n <= minutes_n - 1;
+                            when 2 =>
+                                hours_n <= hours_n - 1;
+                        end case;               
                     end if;
+                    
+                    -- fix overflows
+                    if (seconds_n > 59) then
+                        seconds_n <= 0;
+                    elsif (seconds_n < 0) then
+                        seconds_n <= 59;
+                    end if;
+                    
+                    if (minutes_n > 59) then
+                        minutes_n <= 0;
+                    elsif (minutes_n < 0) then
+                        minutes_n <= 59;
+                    end if;
+                    
+                    if (hours_n > 23) then
+                        hours_n <= 0;
+                    elsif (hours_n < 0) then
+                        hours_n <= 23;
+                    end if;                    
                 when others =>
                     state <= DISP;
             end case;
