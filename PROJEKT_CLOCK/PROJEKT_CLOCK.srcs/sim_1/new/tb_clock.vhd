@@ -38,14 +38,8 @@ architecture tb of tb_clock is
     signal hours     : std_logic_vector (4 downto 0);
 
     constant TbPeriod : time := 1000 ns; -- ***EDIT*** Put right period here
-    constant TbPeriod_c: time := 10 ns;
-    
     signal TbClock : std_logic := '0';
-    signal TbClock_c : std_logic := '0';
-    
     signal TbSimEnded : std_logic := '0';
-    signal TbSimEnded_c : std_logic := '0';
-    
 
 begin
 
@@ -64,15 +58,14 @@ begin
 
     -- Clock generation
     TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
-    TbClock_c <= not TbClock_c after TbPeriod_c/2 when TbSimEnded_c /= '1' else '0';
 
     -- ***EDIT*** Check that clk is really your main clock signal
     clk <= TbClock;
-    clk_1hz <= TbClock_c;
 
     stimuli : process
     begin
         -- ***EDIT*** Adapt initialization as needed
+        clk_1hz <= '0';
         set_sw <= '0';
         btn_right <= '0';
         btn_left <= '0';
@@ -87,7 +80,6 @@ begin
         wait for 100 ns;
 
         -- ***EDIT*** Add stimuli here
-        
         wait for 100 * TbPeriod;
 
         -- Stop the clock and hence terminate the simulation

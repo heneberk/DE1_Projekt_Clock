@@ -47,23 +47,33 @@ entity clock is
 end clock;
     
 architecture Behavioral of clock is
-    type state_type is (SET, DISP);
-    signal state : state_type;
-    signal digit : integer;
-    signal seconds_n : integer;
-    signal minutes_n : integer;
-    signal hours_n : integer;
+    type state_type is (INIT, SET, DISP);
+    signal state : state_type := INIT;
+    signal digit : integer range -1 to 3 := 0;
+   
+    signal seconds_n : integer range -1 to 60 := 0;
+    signal minutes_n : integer range -1 to 60 := 0;
+    signal hours_n : integer range -1 to 24 := 0;
 begin
-    process (clk)
+    process (clk, rst)
     begin
         if rising_edge(clk) then
+			if (rst = '1') then              
+				seconds_n <= 0;
+				minutes_n <= 0;
+				hours_n <= 0;
+				digit <= 0;
+		
+				state <= DISP;
+			end if;
+			
             case state is
                 when DISP =>
                     if (set_sw = '1') then
                         state <= SET;
                     end if;  
                 when SET =>
-                    if (set_sw = '0') then
+                    if (set_sw = '1') then
                         state <= DISP;
                     elsif () then
                     end if;

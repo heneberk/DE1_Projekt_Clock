@@ -50,11 +50,13 @@ end clock;
 architecture Behavioral of clock is
     type state_type is (SET, DISP);
     signal state : state_type;
-    signal digit : integer range -1 to 3;
+    signal digit : integer range -1 to 3 ;
     
     signal seconds_n : integer range -1 to 60;
     signal minutes_n : integer range -1 to 60;
     signal hours_n : integer range -1 to 24;
+    
+    signal clk_1hz_rising : std_logic := '0';
 begin
     process (clk, rst)
     begin
@@ -71,6 +73,21 @@ begin
                 when DISP =>
                     if (set_sw = '1') then
                         state <= SET;
+                    elsif (rising_edge(clk_1hz)) then
+                        if state = DISP then
+                            seconds_n <= seconds_n + 1;
+                            if seconds_n = 60 then
+                                seconds_n <= 0;
+                                minutes_n <= minutes_n + 1;
+                            end if;
+                            if minutes_n = 60 then
+                                minutes_n <= 0;
+                                hours_n <= hours_n + 1;
+                            end if;
+                            if hours_n = 24 then
+                                hours_n <= 0;
+                            end if;
+                        end if;
                     end if;
                 when SET =>
                     if (set_sw = '0') then
@@ -87,6 +104,8 @@ begin
                                 minutes_n <= minutes_n + 1;
                             when 2 =>
                                 hours_n <= hours_n + 1;
+                            when others =>
+                                digit <= 0;
                         end case; 
                     elsif (btn_down = '1') then
                         case digit is
@@ -96,6 +115,8 @@ begin
                                 minutes_n <= minutes_n - 1;
                             when 2 =>
                                 hours_n <= hours_n - 1;
+                            when others =>
+                                digit <= 0;
                         end case;               
                     end if;
                     
@@ -131,21 +152,10 @@ begin
     
     process (clk_1hz)
     begin
-        if state = DISP then
-            seconds_n <= seconds_n + 1;
-            if seconds_n = 60 then
-                seconds_n <= 0;
-                minutes_n <= minutes_n + 1;
-            end if;
-            if minutes_n = 60 then
-                minutes_n <= 0;
-                hours_n <= hours_n + 1;
-            end if;
-            if hours_n = 24 then
-                hours_n <= 0;
-            end if;
-        end if;
+
     end process;
+       
+
     
     seconds <= std_logic_vector(to_unsigned(seconds_n, seconds'length));
     minutes <= std_logic_vector(to_unsigned(minutes_n, minutes'length));
