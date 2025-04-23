@@ -129,7 +129,7 @@ begin
             hours      => hours_sig
         );
 
-    -- stopeky
+    -- stopky
     stopwatch_inst : stopwatch
         port map (
             clk         => CLK,
