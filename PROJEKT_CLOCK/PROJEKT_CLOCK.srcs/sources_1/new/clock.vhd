@@ -149,13 +149,7 @@ begin
             end case;
         end if;
     end process;
-    
-    process (clk_1hz)
-    begin
-
-    end process;
        
-
     
     seconds <= std_logic_vector(to_unsigned(seconds_n, seconds'length));
     minutes <= std_logic_vector(to_unsigned(minutes_n, minutes'length));
