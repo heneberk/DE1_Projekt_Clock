@@ -48,8 +48,8 @@ entity clock is
 end clock;
 
 architecture Behavioral of clock is
-    type state_type is (SET, DISP);
-    signal state : state_type;
+    type state_type is (DISP, SET);
+    signal state : state_type := DISP;
     signal digit : integer range -1 to 3 ;
     
     signal seconds_n : integer range -1 to 60;
@@ -61,6 +61,7 @@ begin
     process (clk, rst)
     begin
         if rising_edge(clk) then
+            clk_1hz_rising <= clk_1hz;
             if (rst = '1') then
                 state <= DISP;
                 
@@ -69,26 +70,25 @@ begin
                 hours_n <= 0;
                 digit <= 0;
             end if;
+            
             case state is
                 when DISP =>
                     if (set_sw = '1') then
                         state <= SET;
-                    elsif (rising_edge(clk_1hz)) then
-                        if state = DISP then
-                            seconds_n <= seconds_n + 1;
-                            if seconds_n = 60 then
-                                seconds_n <= 0;
-                                minutes_n <= minutes_n + 1;
-                            end if;
-                            if minutes_n = 60 then
-                                minutes_n <= 0;
-                                hours_n <= hours_n + 1;
-                            end if;
-                            if hours_n = 24 then
-                                hours_n <= 0;
-                            end if;
+                    elsif (clk_1hz = '1' and clk_1hz_rising = '0') then
+                        seconds_n <= seconds_n + 1;
+                        if seconds_n = 60 then
+                            seconds_n <= 0;
+                            minutes_n <= minutes_n + 1;
                         end if;
-                    end if;
+                        if minutes_n = 60 then
+                            minutes_n <= 0;
+                            hours_n <= hours_n + 1;
+                        end if;
+                        if hours_n = 24 then
+                            hours_n <= 0;
+                        end if;
+                    end if;        
                 when SET =>
                     if (set_sw = '0') then
                         state <= DISP;
