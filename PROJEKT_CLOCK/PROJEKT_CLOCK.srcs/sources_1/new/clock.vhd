@@ -36,7 +36,7 @@ entity clock is
            clk : in STD_LOGIC;
            clk_1hz : in STD_LOGIC;
            rst : in STD_LOGIC;
-           set_sw : in std_logic;
+           sw_set : in std_logic;
            btn_right : in std_logic;
            btn_left : in std_logic;
            btn_up : in std_logic;
@@ -52,45 +52,38 @@ architecture Behavioral of clock is
     signal state : state_type := DISP;
     signal digit : integer range -1 to 3 ;
     
-    signal seconds_n : integer range -1 to 60;
-    signal minutes_n : integer range -1 to 60;
-    signal hours_n : integer range -1 to 24;
+    signal seconds_n : integer range -1 to 60 := 58;
+    signal minutes_n : integer range -1 to 60 := 58;
+    signal hours_n : integer range -1 to 24 := 23;
     
     signal clk_1hz_rising : std_logic := '0';
 begin
-    process (clk, rst)
+    process (clk)
     begin
         if rising_edge(clk) then
             clk_1hz_rising <= clk_1hz;
-            if (rst = '1') then
-                state <= DISP;
-                
-                seconds_n <= 0;
-                minutes_n <= 0;
-                hours_n <= 0;
-                digit <= 0;
-            end if;
             
             case state is
                 when DISP =>
-                    if (set_sw = '1') then
+                    if (sw_set = '1') then
                         state <= SET;
                     elsif (clk_1hz = '1' and clk_1hz_rising = '0') then
                         seconds_n <= seconds_n + 1;
-                        if seconds_n = 60 then
+
+                        if (seconds_n = 59) then
                             seconds_n <= 0;
                             minutes_n <= minutes_n + 1;
                         end if;
-                        if minutes_n = 60 then
+                        if (minutes_n = 59 and seconds_n = 59) then
                             minutes_n <= 0;
                             hours_n <= hours_n + 1;
                         end if;
-                        if hours_n = 24 then
+                        if (hours_n = 23 and minutes_n = 59 and seconds_n = 59) then
                             hours_n <= 0;
                         end if;
                     end if;        
                 when SET =>
-                    if (set_sw = '0') then
+                    if (sw_set = '0') then
                         state <= DISP;
                     elsif (btn_right = '1') then
                         digit <= digit + 1;
@@ -119,8 +112,8 @@ begin
                                 digit <= 0;
                         end case;               
                     end if;
-                    
-                    -- fix overflows
+
+                    -- overflow mitigation
                     if (seconds_n > 59) then
                         seconds_n <= 0;
                     elsif (seconds_n < 0) then
@@ -143,7 +136,8 @@ begin
                         digit <= 0;
                     elsif (digit < 0) then
                         digit <= 2;
-                    end if;   
+                    end if; 
+
                 when others =>
                     state <= DISP;
             end case;
