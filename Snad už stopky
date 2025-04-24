@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
 
 entity stopky_hms is
     Port ( 
@@ -98,12 +99,12 @@ begin
     -- Převod na číslice 
     process(hours, minutes, seconds)
     begin
-        digits(31 downto 28) <= conv_std_logic_vector(hours / 10, 4);
-        digits(27 downto 24) <= conv_std_logic_vector(hours mod 10, 4);
-        digits(23 downto 20) <= conv_std_logic_vector(minutes / 10, 4);
-        digits(19 downto 16) <= conv_std_logic_vector(minutes mod 10, 4);
-        digits(15 downto 12) <= conv_std_logic_vector(seconds / 10, 4);
-        digits(11 downto 8)  <= conv_std_logic_vector(seconds mod 10, 4);
+        digits(31 downto 28) <= std_logic_vector(to_unsigned(hours / 10, 4));
+        digits(27 downto 24) <= std_logic_vector(to_unsigned(hours / 10, 4));
+        digits(23 downto 20) <= std_logic_vector(to_unsigned(hours / 10, 4));
+        digits(19 downto 16) <= std_logic_vector(to_unsigned(hours / 10, 4));
+        digits(15 downto 12) <= std_logic_vector(to_unsigned(hours / 10, 4));
+        digits(11 downto 8)  <= std_logic_vector(to_unsigned(hours / 10, 4));
         digits(7 downto 0)   <= (others => '0');  -- Poslední dvě číslice volné (např. desetiny)
     end process;
 
