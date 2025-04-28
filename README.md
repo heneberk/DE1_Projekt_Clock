@@ -22,11 +22,35 @@ ________________________________________________
 
 ________________________________________________
 
+
+[Photo(s) of your application with labels of individual parts.]
+
+![image](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
+
+[Optional: Link to your short video presentation.]
+
+Hardware description of demo application
+Describe your implementation. Put a descriptive top-level schematic of your application.
+
+________________________________________________
+
+# Software description
+
+Block Scheme:
 ![image](https://github.com/user-attachments/assets/eb087970-55d7-4c71-9f35-b385362d16a3)
 
+Component(s) simulations:
 
+..
+________________________________________________
 
+# References
+Put here the references and online tools you used.
+...
 
+https://www.edaplayground.com/
+https://vhdl.lapinoo.net/
+https://github.com/tomas-fryza/vhdl-labs
 
 
 [Photo(s) of your application with labels of individual parts.]
