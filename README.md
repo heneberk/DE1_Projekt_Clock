@@ -32,6 +32,7 @@ ________________________________________________
 ![PROJECT POSTER](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
 
 ![SHORT VIDEO EXAMPLE]
+
 (https://www.youtube.com/watch?v=jS57hyXT2jQ)
 
 Hardware description of demo application
