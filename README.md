@@ -1,13 +1,17 @@
-# DE1_Projekt_Digitální hodiny s alarmem a stopkami
+# DE1_Project_Digital clock with alarm and stopwatch
 ________________________________________________
-# Členové týmu
-Člen 1: Ladislav Jonáš
-Člen 2: Martin Koleňák
-Člen 3: Matyas Heneberk
-Člen 4: Vojtěch Brhel
+# Team members
+
+Member 1: Ladislav Jonáš
+
+Member 2: Martin Koleňák
+
+Member 3: Matyas Heneberk
+
+Member 4: Vojtěch Brhel
 ________________________________________________
 
-# Popis programu
+# Program description
 
 This project presents a digital clock design in VHDL. The program includes the functions of a classic digital clock, stopwatch and alarm. 
   The digital clock works on the clock principle (1Hz), which counts pulses on the rising edge. The time setting itself is implemented using the yellow buttons on the board. The setting is done using the buttons. To set the time, you can select a given 7-segment display and set the exact time.
@@ -23,11 +27,12 @@ ________________________________________________
 ________________________________________________
 
 
-[Photo(s) of your application with labels of individual parts.]
+# Photo(s) of application with labels of individual parts
 
-![image](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
+![PROJECT POSTER](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
 
-[Optional: Link to your short video presentation.]
+![SHORT VIDEO EXAMPLE]
+(https://www.youtube.com/watch?v=jS57hyXT2jQ)
 
 Hardware description of demo application
 Describe your implementation. Put a descriptive top-level schematic of your application.
@@ -41,12 +46,11 @@ Block Scheme:
 
 Component(s) simulations:
 
-..
+....
 ________________________________________________
 
 # References
-Put here the references and online tools you used.
-...
+
 
 https://www.edaplayground.com/
 
@@ -55,7 +59,7 @@ https://vhdl.lapinoo.net/
 https://github.com/tomas-fryza/vhdl-labs
 
 
-[Photo(s) of your application with labels of individual parts.]
+
 
 
 
