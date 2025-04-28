@@ -31,7 +31,7 @@ ________________________________________________
 ________________________________________________
 
 
-## Hardware description and application
+# Hardware description and application
 
 
 ![image](https://github.com/user-attachments/assets/401f521a-6167-409a-97fc-6b2983f5d2f4)
@@ -42,20 +42,20 @@ https://www.youtube.com/watch?v=jS57hyXT2jQ
 
 ....
 
-# HARDWARE OF PROJECT:
+## Hardware on the board:
 
 Here is descibed our hardware implementation of each project part. 
 
 
-CLOCK:
+### CLOCK:
 
 ![Hardware - CLOCK](https://github.com/user-attachments/assets/84ef4fa8-f53d-45b2-bdae-9484a0d0c034)
 
-ALARM:
+### ALARM:
 
 ![Hardware - ALARM](https://github.com/user-attachments/assets/11f82f8d-e00e-4686-a1e6-d510867f1209)
 
-STOPWATCH:
+### STOPWATCH:
 
 ![Hardware - STOPWATCH](https://github.com/user-attachments/assets/182ed693-f5f6-4844-9a28-552a4ca36d9e)
 
