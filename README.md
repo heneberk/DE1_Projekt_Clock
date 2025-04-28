@@ -46,7 +46,18 @@ HARDWARE OF PROJECT:
 
 Here is descibed our hardware implementation of each project part. 
 
-![Hardware of project](https://github.com/user-attachments/assets/f666ebea-d7f5-4f52-94b0-217b587f54f5)
+CLOCK:
+
+![Hardware - CLOCK](https://github.com/user-attachments/assets/84ef4fa8-f53d-45b2-bdae-9484a0d0c034)
+
+ALARM:
+
+![Hardware - ALARM](https://github.com/user-attachments/assets/11f82f8d-e00e-4686-a1e6-d510867f1209)
+
+STOPWATCH:
+
+![Hardware - STOPWATCH](https://github.com/user-attachments/assets/182ed693-f5f6-4844-9a28-552a4ca36d9e)
+
 
 
 ________________________________________________
