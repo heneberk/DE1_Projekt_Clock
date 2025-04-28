@@ -9,23 +9,20 @@ ________________________________________________
 
 # Popis programu
 
-  Tento projekt představuje návrh digitálních hodin v jazyce VHDL. Program zahrnuje funkci klasických digitální hodiny, stopek a alarmu. 
-Digitální hodiny fungují na principu clocku (1Hz), který čítá pulsy na náběžnou hranu. Samotné nastavování času je realizováno pomocí žlutých tlačítek na desce. Nastavení funguje tak, že pomocí tlačítek lze zvolit daný 7-segmentový displej a nastavit přesný čas.
-Funkce stopek je obdobou základní funkce hodin. Funguje na principu clocku o frekvenci 1 Hz a dochází k čítání čísel. Stopky jsou ovládány pouze jedním tlačítkem (prostřední žluté). Po prvním stisknutí tlačítka se stopky spustí. Po druhém stisknutí se čítání zastaví a po třetím se stopky resetují zpět na nulu.
-Poslední funkcí projektu je alarm. Alarm poskytuje možnost nastavit čas, při jehož dosažení je generoán signál. Ten je implementací výstupu, na který lze připojit externí zařízení v podobě reproduktoru nebo jednoduché signalizací pomocí LED diody. 
+This project presents a digital clock design in VHDL. The program includes the functions of a classic digital clock, stopwatch and alarm. 
+  The digital clock works on the clock principle (1Hz), which counts pulses on the rising edge. The time setting itself is implemented using the yellow buttons on the board. The setting is done using the buttons. To set the time, you can select a given 7-segment display and set the exact time.
+  The stopwatch function is similar to the basic clock function. It works on the clock principle with a frequency of 1 Hz for counting numbers. The stopwatch is controlled by only one button (the middle yellow one). After the first press of the button, the stopwatch starts. After the second press, the counting stops. The stopwatch can be reset using switch 2.
+  The last function of the project is the alarm. The alarm provides the ability to set the time, when reached, a signal is generated. This is connected to the LED diode to control the alarm function.
+________________________________________________
 
-  Výstup programu je realizován pomocí 7-segmentových displejů a signalizace LED (alarm). 
-Celkově lze říci, že celý návrh je optimalizován s důrazem na jednoduchost a opakované využití funkčních bloků. 
+# Main benefits of the project
+
+- simplicity
+- teamwork
 
 ________________________________________________
 
-# Hlavní přínosy projektu
-
-- jednoduchost
-- týmová spolupráce
-
-________________________________________________
-
+![image](https://github.com/user-attachments/assets/eb087970-55d7-4c71-9f35-b385362d16a3)
 
 
 
