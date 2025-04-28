@@ -50,15 +50,18 @@ Here is descibed our hardware implementation of each project part.
 
 ### CLOCK:
 
-![Hardware - CLOCK](https://github.com/user-attachments/assets/84ef4fa8-f53d-45b2-bdae-9484a0d0c034)
+![image](https://github.com/user-attachments/assets/16890e77-a17b-4454-aa7d-61bd1990a89b)
+
 
 ### ALARM:
 
-![Hardware - ALARM](https://github.com/user-attachments/assets/11f82f8d-e00e-4686-a1e6-d510867f1209)
+![image](https://github.com/user-attachments/assets/788b4b2e-ddad-4721-9b7d-fe0ae90c4b68)
+
 
 ### STOPWATCH:
 
-![Hardware - STOPWATCH](https://github.com/user-attachments/assets/182ed693-f5f6-4844-9a28-552a4ca36d9e)
+![image](https://github.com/user-attachments/assets/9c47d99e-c75b-4603-8956-6100cd4f809f)
+
 
 
 
