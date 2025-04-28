@@ -48,9 +48,9 @@ ________________________________________________
 Put here the references and online tools you used.
 ...
 
-https://www.edaplayground.com/
-https://vhdl.lapinoo.net/
-https://github.com/tomas-fryza/vhdl-labs
+!https://www.edaplayground.com/
+!https://vhdl.lapinoo.net/
+!https://github.com/tomas-fryza/vhdl-labs
 
 
 [Photo(s) of your application with labels of individual parts.]
