@@ -32,7 +32,6 @@ ________________________________________________
 # Hardware description and application
 
 
-PROJECT POSTER:
 ![image](https://github.com/user-attachments/assets/401f521a-6167-409a-97fc-6b2983f5d2f4)
 
 
