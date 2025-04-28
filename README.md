@@ -30,7 +30,7 @@ ________________________________________________
 
 # Photo(s) of application with labels of individual parts
 
-![PROJECT POSTER](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
+![PROJECT POSTER]![image](https://github.com/user-attachments/assets/401f521a-6167-409a-97fc-6b2983f5d2f4)
 
 VIDEO EXAMPLE:
 https://www.youtube.com/watch?v=jS57hyXT2jQ
