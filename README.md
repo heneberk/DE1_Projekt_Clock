@@ -49,11 +49,6 @@ Here is descibed our hardware implementation of each project part.
 ![Hardware of project](https://github.com/user-attachments/assets/f666ebea-d7f5-4f52-94b0-217b587f54f5)
 
 
-
-Put a descriptive top-level schematic of your application.
-
-....
-
 ________________________________________________
 
 # Software description
@@ -63,7 +58,20 @@ Block Scheme:
 
 Component(s) simulations:
 
+
+
+
+
+
+
+
+
+
 ....
+
+
+
+
 ________________________________________________
 
 # References
