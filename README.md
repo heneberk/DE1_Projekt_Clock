@@ -31,7 +31,7 @@ ________________________________________________
 ________________________________________________
 
 
-# Hardware description and application
+## Hardware description and application
 
 
 ![image](https://github.com/user-attachments/assets/401f521a-6167-409a-97fc-6b2983f5d2f4)
@@ -42,9 +42,10 @@ https://www.youtube.com/watch?v=jS57hyXT2jQ
 
 ....
 
-HARDWARE OF PROJECT:
+# HARDWARE OF PROJECT:
 
 Here is descibed our hardware implementation of each project part. 
+
 
 CLOCK:
 
