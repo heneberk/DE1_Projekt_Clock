@@ -31,9 +31,11 @@ ________________________________________________
 
 ![PROJECT POSTER](https://github.com/heneberk/DE1_Projekt_Clock/blob/main/DE1_PROJEKT%20POSTER.pdf)
 
-![SHORT VIDEO EXAMPLE]
+Short video example:
 
 (https://www.youtube.com/watch?v=jS57hyXT2jQ)
+
+
 
 Hardware description of demo application
 Describe your implementation. Put a descriptive top-level schematic of your application.
