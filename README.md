@@ -39,13 +39,19 @@ ________________________________________________
 
 
 ## Video example:
+
+Stopwatch:
 https://www.youtube.com/watch?v=jS57hyXT2jQ
 
+Clock verification:
+Here is a video of the clock. You can see here that the clock and display functions have been verified.
+(https://youtu.be/vvPfmfUHTXw)
 
 
 ## Hardware on the board:
 
 Here is descibed our hardware implementation of each project part. 
+
 
 
 ### CLOCK:
