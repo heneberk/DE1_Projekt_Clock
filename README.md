@@ -77,11 +77,17 @@ ________________________________________________
 
 # Software description
 
-Block Scheme:
+## Block Scheme:
 ![image](https://github.com/user-attachments/assets/eb087970-55d7-4c71-9f35-b385362d16a3)
 
-Component(s) simulations:
+## Component(s) simulations:
 
+### Clock:
+
+![image](https://github.com/user-attachments/assets/cefaf0c0-360e-49ea-add1-5658e99d4cbf)
+
+After one period of the clk_1hz signal, the seconds overflow from 59 to 00. The same thing happens with the minutes at 59, then they are also reset to 00.
+Similarly, an overflow occurs for hours. From value 23 to 00. This triple transition is correctly captured in the simulation and verifies the correct functionality of the counter.
 
 
 
