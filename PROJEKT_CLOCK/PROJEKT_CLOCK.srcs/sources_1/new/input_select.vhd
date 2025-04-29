@@ -55,8 +55,22 @@ end input_select;
 
 architecture Behavioral of input_select is
     type state_type is (CLOCK, ALARM, STPW);
-    state
+    signal state : state_type := CLOCK;
+
 begin
-
-
+    process (clk)
+    begin
+        if (rising_edge(clk)) then
+            case state is
+                when CLOCK =>
+                    clock_up <= btn_up;
+                    clock_down <= btn_down;
+                    clock_left <= btn_left;
+                    clock_right <= btn_right;
+                    clock_sw <= set_sw;
+                when others =>
+                    state <= CLOCK;
+            end case;
+        end if;
+    end process;
 end Behavioral;

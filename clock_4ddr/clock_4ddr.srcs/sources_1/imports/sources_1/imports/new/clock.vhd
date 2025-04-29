@@ -36,41 +36,50 @@ entity clock is
            clk : in STD_LOGIC;
            clk_1hz : in STD_LOGIC;
            rst : in STD_LOGIC;
-           -- sw_set : in std_logic;
+           sw_set : in std_logic;
            btn_right : in std_logic;
            btn_left : in std_logic;
            btn_up : in std_logic;
            btn_down : in std_logic;
-           seconds : out std_logic_vector (5 downto 0);
-           minutes : out std_logic_vector (5 downto 0);
-           hours : out std_logic_vector (4 downto 0);
-           disp_digit : out std_logic_vector (3 downto 0)
+           seconds : out std_logic_vector (3 downto 0);
+           seconds_ten : out std_logic_vector (3 downto 0);
+           minutes : out std_logic_vector (3 downto 0);
+           minutes_ten : out std_logic_vector (3 downto 0);
+           hours : out std_logic_vector (3 downto 0);
+           hours_ten : out std_logic_vector (3 downto 0)
+           
      );
 end clock;
 
 architecture Behavioral of clock is
     type state_type is (DISP, SET);
     signal state : state_type := DISP;
-    signal digit : integer range -1 to 3 ;
-    signal digit_n : std_logic_vector (3 downto 0);
-    
+    signal digit : integer range -1 to 3 ;    
     signal seconds_n : integer range -1 to 60 := 58;
     signal minutes_n : integer range -1 to 60 := 58;
     signal hours_n : integer range -1 to 24 := 23;
     
     signal clk_1hz_rising : std_logic := '0';
 begin
-    process (clk)
+    process (clk, seconds_n, minutes_n, hours_n)
     begin
         if rising_edge(clk) then
-            clk_1hz_rising <= clk_1hz;
-            digit_n <= digit_n + 1;
+            clk_1hz_rising <= clk_1hz;     
             
+            if (rst = '1') then
+                state <= DISP;
+                seconds_n <= 58;
+                minutes_n <= 58;
+                hours_n <= 23;
+
+                clk_1hz_rising <= '0';
+                digit <= 0;
+            end if;
             case state is
                 when DISP =>
-                  --  if (sw_set = '1') then
-                    --    state <= SET;
-                    if (clk_1hz = '1' and clk_1hz_rising = '0') then
+                    if (sw_set = '1') then
+                        state <= SET;
+                    elsif (clk_1hz = '1' and clk_1hz_rising = '0') then
                         seconds_n <= seconds_n + 1;
 
                         if (seconds_n = 59) then
@@ -86,9 +95,9 @@ begin
                         end if;
                     end if;        
                 when SET =>
-                    --if (sw_set = '0') then
-                     --   state <= DISP;
-                    if (btn_right = '1') then
+                    if (sw_set = '0') then
+                        state <= DISP;
+                    elsif (btn_right = '1') then
                         digit <= digit + 1;
                     elsif (btn_left = '1') then
                         digit <= digit - 1;
@@ -145,10 +154,17 @@ begin
                     state <= DISP;
             end case;
         end if;
+            
+    seconds <= std_logic_vector(to_unsigned(seconds_n mod 10, 4));
+    seconds_ten <= std_logic_vector(to_unsigned(seconds_n / 10, 4));
+    minutes <= std_logic_vector(to_unsigned(minutes_n mod 10, 4));
+    minutes_ten <= std_logic_vector(to_unsigned(minutes_n / 10, 4));
+    hours <= std_logic_vector(to_unsigned(hours_n mod 10, 4));
+    hours_ten <= std_logic_vector(to_unsigned(hours_n / 10, 4));
+
     end process;
        
+
     
-    seconds <= std_logic_vector(to_unsigned(seconds_n, seconds'length));
-    minutes <= std_logic_vector(to_unsigned(minutes_n, minutes'length));
-    hours <= std_logic_vector(to_unsigned(hours_n, hours'length));
+    
 end Behavioral;
