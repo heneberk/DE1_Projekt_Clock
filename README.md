@@ -48,7 +48,7 @@ Clock verification:
 
 Here is a video of the clock. You can see here that the clock and display functions have been verified.
 
-(https://youtu.be/vvPfmfUHTXw)
+https://youtu.be/vvPfmfUHTXw
 
 
 ## Hardware on the board:
