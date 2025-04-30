@@ -81,7 +81,7 @@ ________________________________________________
 ## Block Scheme:
 ![image](https://github.com/user-attachments/assets/eb087970-55d7-4c71-9f35-b385362d16a3)
 
-## Component(s) simulations:
+## Main component simulation:
 
 ### Clock:
 
