@@ -91,6 +91,9 @@ After one period of the clk_1hz signal, the seconds overflow from 59 to 00. The 
 Similarly, an overflow occurs for hours. From value 23 to 00. This triple transition is correctly captured in the simulation and verifies the correct functionality of the counter.
 
 
+![image](https://github.com/user-attachments/assets/261d83d5-b7f8-4c2d-9b18-593602916f8b)
+
+In this simulation was tested function of the stopwatch. If is switch 2 on - Stopwatch mode is displayed on the board. Then by pressing BTNC stopwatch starts couining using our CLK_1Hz. When you push BTNC once a again, then couting will stop. Switch 2 also works as a reset button.
 
 
 
